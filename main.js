@@ -11,7 +11,7 @@ let newDate;
 let newTime;
 
 // Start interval countdown
-const countDown = () => {
+const init = () => {
    const endTime = new Date(`${newDate} ${newTime}`).getTime();
    const currentTime = new Date().getTime();
    // Days
@@ -33,7 +33,7 @@ const countDown = () => {
 }
 
 // Function after click on SUBMIT button
-const getDateAndTime = () => {
+const startCountDown = () => {
    newDate = inputDate.value;
    newTime = inputTime.value;
    // Check if user set date and time
@@ -44,7 +44,7 @@ const getDateAndTime = () => {
    } else if (!newDate && newTime) {
       return alert('Please select date!');
    }
-   setInterval(countDown, 1000);
+   setInterval(init, 1000);
 }
 
-submitBtn.addEventListener('click', getDateAndTime); 
+submitBtn.addEventListener('click', startCountDown); 
