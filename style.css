@@ -13,7 +13,7 @@ div.container {
    transform: translate(-50%, -50%);
    display: flex;
    align-items: center;
-   width: 80vh;
+   min-width: 400px;
    justify-content: space-between;
 }
 
