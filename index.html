@@ -4,36 +4,65 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Countdown</title>
-   <link rel="stylesheet" href="style.css">
+   <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./css/style.css">
+   <title>Radek-timer</title>
 </head>
 
 <body>
-   <div class="date-time-input">
-      <input type="date" class="date">
-      <input type="time" class="time">
-      <button class="submit">Submit</button>
-   </div>
-   <div class="container">
-      <div class="item">
-         <span class="days">--</span>
-         <h3 class="description">days</h3>
-      </div>
-      <div class="item">
-         <span class="hours">--</span>
-         <h3 class="description">hours</h3>
-      </div>
-      <div class="item">
-         <span class="minutes">--</span>
-         <h3 class="description">minutes</h3>
-      </div>
-      <div class="item">
-         <span class="seconds">--</span>
-         <h3 class="description">seconds</h3>
-      </div>
-   </div>
+   <main class="timer">
 
-   <script src="main.js"></script>
+      <header class="timer__header">
+         <h1 class="timer__heading">Timer</h1>
+      </header>
+
+      <article class="timer__clock">
+         <section class="clock">
+            <input type="number" name="hours" id="js-hours" class="clock__input" value="00" min="0" max="99" disabled>
+            <label for="hours" class="clock__label">hours</label>
+         </section>
+
+         <section class="clock">
+            <input type="number" name="minutes" id="js-minutes" class="clock__input" value="00" min="0" max="59" disabled>
+            <label for="minutes" class="clock__label">minutes</label>
+         </section>
+
+         <section class="clock">
+            <input type="number" name="seconds" id="js-seconds" class="clock__input" value="00" min="0" max="59" disabled>
+            <label for="seconds" class="clock__label">seconds</label>
+         </section>
+      </article>
+
+      <article class="timer__buttons">
+         <button class="button" id="js-edit-time">
+            <svg class="button__icon">
+               <use xlink:href="./assets/icons/sprite.svg#create-24px"></use>
+            </svg>
+         </button>
+         <button class="button" id="js-run-time" disabled>
+            <svg class="button__icon">
+               <use xlink:href="./assets/icons/sprite.svg#play_arrow-24px"></use>
+            </svg>
+         </button>
+         <button class="button" id="js-rerun-time">
+            <svg class="button__icon">
+               <use xlink:href="./assets/icons/sprite.svg#refresh-24px"></use>
+            </svg>
+         </button>
+
+         <section class="timer__audio">
+            <audio src="./assets/sounds/alarm.mp3" id="js-audio" loop></audio>
+            <button class="button hide" id="js-alarm" title="Stop alarm">
+               <svg class="button__icon button__icon--alarm">
+                  <use xlink:href="./assets/icons/sprite.svg#timer-24px"></use>
+               </svg>
+            </button>
+         </section>
+         
+      </article>
+   </main>
+
+   <script src="./js/main.js"></script>
 </body>
 
 </html>
