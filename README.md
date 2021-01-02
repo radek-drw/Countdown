@@ -1,4 +1,10 @@
 # Countdown
-User can set date and time and click the start button to start countdown time.
+Application completely changed including HTML, CSS and JavaScript as recently I have learned BEM methodology and Object Oriented Programming in JS.
 
-Few changes with width of container
+What aplication does:
+1. Maximum time is 99h 59min 59sec
+2. User can confirm already set time by pressing key 'Enter'
+3. Minutes and seconds can be set more than 59 so if for example user needs to countdown 300sec after press play button it will automaticly convert seconds to minutes and also it will convert minutes to hours if is more than 59 mins. [example: 300sec it will be 5min and 0sec].
+4. When time is finished the alarm sound will go off, and alarm icon will be visible, thane user can click the icon to reset all settings and hide alarm icon
+5. Time in input fields can be set by using keyboard arrows (up & down)
+6. Rerun button available for user to reset time as it was set at the beginnig
