@@ -1,50 +1,157 @@
-const spanDays = document.querySelector('span.days');
-const spanHours = document.querySelector('span.hours');
-const spanMinutes = document.querySelector('span.minutes');
-const spanSeconds = document.querySelector('span.seconds');
+class Timer {
+   constructor() {
+      this.hoursInput = document.querySelector('#js-hours');
+      this.minutesInput = document.querySelector('#js-minutes');
+      this.secondsInput = document.querySelector('#js-seconds');
+      this.timerInputs = [...document.querySelectorAll('.clock__input')];
+      this.editTime = document.querySelector('#js-edit-time');
+      this.runTime = document.querySelector('#js-run-time');
+      this.rerunTime = document.querySelector('#js-rerun-time');
+      this.audio = document.querySelector('#js-audio');
+      this.alarm = document.querySelector('#js-alarm');
 
-const inputDate = document.querySelector('input.date');
-const inputTime = document.querySelector('input.time');
-const submitBtn = document.querySelector('button.submit');
+      this.hours = 0;
+      this.minutes = 0;
+      this.seconds = 0;
+      this.totalTime = 0;
+      this.currentTime = 0;
 
-let newDate;
-let newTime;
+      this.maxHours = 99;
+      this.maxMinutes = 60;
+      this.maxSeconds = 60;
+      this.maxTime = this.maxHours * 3600 + (this.maxMinutes - 1) * 60 + this.maxSeconds;
 
-// Start interval countdown
-const init = () => {
-   const endTime = new Date(`${newDate} ${newTime}`).getTime();
-   const currentTime = new Date().getTime();
-   // Days
-   const days = Math.floor(endTime / (1000 * 60 * 60 * 24) - currentTime / (1000 * 60 * 60 * 24));
-   // Hours
-   let hours = Math.floor(endTime / (1000 * 60 * 60) - currentTime / (1000 * 60 * 60)) % 24;
-   hours = hours < 10 ? `0${hours}` : hours;
-   // Minutes
-   let minutes = Math.floor(endTime / (1000 * 60) - currentTime / (1000 * 60)) % 60;
-   minutes = minutes < 10 ? `0${minutes}` : minutes;
-   // Seconds
-   let seconds = Math.floor(endTime / 1000 - currentTime / 1000) % 60;
-   seconds = seconds < 10 ? `0${seconds}` : seconds;
+      this.isEdit = true;
+      this.isCounting = false;
 
-   spanDays.textContent = days;
-   spanHours.textContent = hours;
-   spanMinutes.textContent = minutes;
-   spanSeconds.textContent = seconds;
-}
+      this.interval = null;
 
-// Function after click on SUBMIT button
-const startCountDown = () => {
-   newDate = inputDate.value;
-   newTime = inputTime.value;
-   // Check if user set date and time
-   if (!newDate && !newTime) {
-      return alert('Please select date and time!');
-   } else if (newDate && !newTime) {
-      return alert('Please select time!');
-   } else if (!newDate && newTime) {
-      return alert('Please select date!');
+      // Path to the icons, in case of change the icons path
+      this.iconsPath = './assets/icons/sprite.svg#';
    }
-   setInterval(init, 1000);
+
+   init() {
+      this.addEventListeners();
+   }
+
+   addEventListeners() {
+      this.editTime.addEventListener('click', () => this.switchEditTime());
+      this.runTime.addEventListener('click', () => this.switchTimer());
+      this.alarm.addEventListener('click', () => this.stopAlarm());
+      this.rerunTime.addEventListener('click', () => this.resetTimer());
+
+      this.timerInputs.forEach(timerInput => timerInput.addEventListener('keyup', e => e.keyCode === 13 && this.switchEditTime()));
+   }
+
+   switchEditTime() {
+      // Edit input fields
+      if (this.isEdit) {
+         this.isCounting = false;
+         clearInterval(this.interval);
+         this.selectUseElement(this.editTime).setAttribute('xlink:href', `${this.iconsPath}done-24px`);
+
+         this.selectUseElement(this.runTime).setAttribute('xlink:href', `${this.iconsPath}play_arrow-24px`);
+
+         this.timerInputs.forEach(timerInput => {
+            timerInput.removeAttribute('disabled');
+            // timerInput.setAttribute('value', '');
+            timerInput.classList.add('clock__input-edit');
+         });
+         this.runTime.setAttribute('disabled', '');
+
+         this.isEdit = !this.isEdit;
+         this.getTimerValues();
+         this.setTimerValues();
+         return;
+      }
+
+      // When input fields are set
+      this.selectUseElement(this.editTime).setAttribute('xlink:href', `${this.iconsPath}create-24px`);
+
+      this.timerInputs.forEach(timerInput => {
+         timerInput.setAttribute('disabled', '');
+         timerInput.classList.remove('clock__input-edit');
+      });
+
+      // Play button is available when time is set
+      this.runTime.removeAttribute('disabled');
+
+      this.isEdit = !this.isEdit;
+
+      this.getTimerValues();
+      this.setTimerValues();
+   }
+
+   switchTimer() {
+      this.isCounting = !this.isCounting;
+
+      if (this.isCounting) {
+         this.selectUseElement(this.runTime).setAttribute('xlink:href', `${this.iconsPath}pause-24px`);
+         this.interval = setInterval(() => this.updateTime(), 1000);
+         return;
+      }
+      this.selectUseElement(this.runTime).setAttribute('xlink:href', `${this.iconsPath}play_arrow-24px`);
+      clearInterval(this.interval);
+   }
+
+   selectUseElement(element) {
+      return element.querySelector('use');
+   }
+
+   getTimerValues() {
+      this.hours = parseInt(this.hoursInput.value, 10);
+      this.minutes = parseInt(this.minutesInput.value, 10);
+      this.seconds = parseInt(this.secondsInput.value, 10);
+
+      this.countTotalTime();
+   }
+
+   setTimerValues() {
+      const seconds = `0${this.currentTime % this.maxSeconds}`;
+      const minutes = `0${Math.floor(this.currentTime / 60) % this.maxMinutes}`;
+      const hours = `0${Math.floor(this.currentTime / 3600)}`;
+
+      this.secondsInput.value = seconds.slice(-2);
+      this.minutesInput.value = minutes.slice(-2);
+      this.hoursInput.value = hours.slice(-2);
+   }
+
+   countTotalTime() {
+      const timeSum = this.seconds + this.minutes * 60 + this.hours * 3600;
+      this.totalTime = timeSum <= this.maxTime ? timeSum : this.maxTime;
+
+      this.currentTime = this.totalTime;
+   }
+
+   updateTime() {
+      if (this.currentTime) {
+         this.currentTime--;
+         this.setTimerValues();
+         return;
+      }
+      clearInterval(this.interval);
+      this.audio.play();
+      this.alarm.classList.remove('hide');
+      this.editTime.setAttribute('disabled', '');
+      this.runTime.setAttribute('disabled', '');
+      this.rerunTime.setAttribute('disabled', '');
+   }
+
+   stopAlarm() {
+      this.audio.pause();
+      this.alarm.classList.add('hide');
+      this.editTime.removeAttribute('disabled', '');
+      this.runTime.removeAttribute('disabled', '');
+      this.rerunTime.removeAttribute('disabled', '');
+      this.switchEditTime();
+   }
+
+   resetTimer() {
+      this.currentTime = this.totalTime;
+      this.setTimerValues();
+   }
 }
 
-submitBtn.addEventListener('click', startCountDown); 
+const timer = new Timer();
+
+timer.init();
