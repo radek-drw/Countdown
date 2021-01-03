@@ -42,7 +42,7 @@ body {
   width: 150px;
   height: 150px;
   border: none;
-  font-family: inherit;
+  font-family: "Roboto Mono", monospace;
   color: inherit;
   background-color: transparent;
   font-size: 6rem;
