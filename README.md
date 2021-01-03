@@ -9,3 +9,4 @@ What aplication does:
 5. Time in input fields can be set by using keyboard arrows (up & down)
 6. Rerun button available for user to reset time as it was set at the beginnig
 7. If given time is one digit only, the timer will add '0' at the beginning of input to make it look more professional
+8. It is responsive application for mobile devices and tablets
