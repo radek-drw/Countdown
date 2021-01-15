@@ -7,7 +7,6 @@
    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="./css/style.css">
-   <link rel="stylesheet" href="style.css">
    <title>Timer</title>
 </head>
 
@@ -20,41 +19,41 @@
 
       <article class="timer__clock">
          <section class="clock">
-            <input type="number" name="hours" id="js-hours" class="clock__input" value="00" min="0" max="99" disabled>
+            <input type="number" name="hours" id="hours" class="clock__input" value="00" min="0" max="99" disabled>
             <label for="hours" class="clock__label">hours</label>
          </section>
 
          <section class="clock">
-            <input type="number" name="minutes" id="js-minutes" class="clock__input" value="00" min="0" max="59" disabled>
+            <input type="number" name="minutes" id="minutes" class="clock__input" value="00" min="0" max="59" disabled>
             <label for="minutes" class="clock__label">minutes</label>
          </section>
 
          <section class="clock">
-            <input type="number" name="seconds" id="js-seconds" class="clock__input" value="00" min="0" max="59" disabled>
+            <input type="number" name="seconds" id="seconds" class="clock__input" value="00" min="0" max="59" disabled>
             <label for="seconds" class="clock__label">seconds</label>
          </section>
       </article>
 
       <article class="timer__buttons">
-         <button class="button" id="js-edit-time">
+         <button class="button" id="edit-time">
             <svg class="button__icon">
                <use xlink:href="./assets/icons/sprite.svg#create-24px"></use>
             </svg>
          </button>
-         <button class="button" id="js-run-time" disabled>
+         <button class="button" id="run-time" disabled>
             <svg class="button__icon">
                <use xlink:href="./assets/icons/sprite.svg#play_arrow-24px"></use>
             </svg>
          </button>
-         <button class="button" id="js-rerun-time">
+         <button class="button" id="rerun-time">
             <svg class="button__icon">
                <use xlink:href="./assets/icons/sprite.svg#refresh-24px"></use>
             </svg>
          </button>
 
          <section class="timer__audio">
-            <audio src="./assets/sounds/alarm.mp3" id="js-audio" loop></audio>
-            <button class="button hide" id="js-alarm" title="Stop alarm">
+            <audio src="./assets/sounds/alarm.mp3" id="audio" loop></audio>
+            <button class="button hide" id="alarm" title="Stop alarm">
                <svg class="button__icon button__icon--alarm">
                   <use xlink:href="./assets/icons/sprite.svg#timer-24px"></use>
                </svg>
@@ -64,7 +63,7 @@
       </article>
    </main>
 
-   <script src="main.js"></script>
+   <script src="./js/main.js"></script>
 </body>
 
 </html>
