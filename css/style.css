@@ -1,0 +1,202 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Aldrich", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+.timer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.timer__header {
+  width: 100%;
+  text-align: center;
+}
+
+.timer__heading {
+  font-size: 4rem;
+}
+
+.timer__clock {
+  width: 500px;
+  margin: 70px auto 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+}
+
+.clock__input {
+  width: 150px;
+  height: 150px;
+  border: none;
+  font-family: "Roboto Mono", monospace;
+  color: inherit;
+  background-color: transparent;
+  font-size: 6rem;
+  text-align: center;
+  outline: none;
+}
+
+.clock:nth-child(2) {
+  margin: 0 3px;
+}
+
+.clock__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.clock__input-edit {
+  background-color: rgba(223, 223, 223, 0.15);
+  border-radius: 5px;
+}
+
+.clock__input:focus {
+  background-color: rgba(223, 223, 223, 0.1);
+}
+
+.clock__label {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.timer__buttons {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button:disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.button__icon {
+  width: 50px;
+  height: 50px;
+  fill: #fff;
+  transition: fill 0.1s ease-in;
+}
+
+.button__icon:hover {
+  fill: #41b883;
+}
+
+.timer__audio {
+  position: absolute;
+  bottom: -100px;
+}
+
+.button__icon--alarm {
+  fill: #c93030;
+  animation: shake 0.1s ease-in infinite;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-1px);
+  }
+
+  75% {
+    transform: translateX(1px);
+  }
+}
+
+@media (max-width: 500px) {
+  .timer__heading {
+    margin-top: 30px;
+    font-size: 3rem;
+  }
+
+  .timer__clock {
+    width: 100%;
+    margin: 70px auto;
+  }
+
+  .clock__input {
+    width: 100px;
+    height: 100px;
+    font-size: 4rem;
+  }
+
+  .clock__label {
+    font-size: 1.2rem;
+  }
+
+  .timer__buttons {
+    width: 100%;
+  }
+
+  .button__icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .button__icon:hover {
+    fill: #fff;
+  }
+
+  .timer__audio {
+    bottom: -170px;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 1024px) {
+  .timer__heading {
+    margin-top: 60px;
+    font-size: 5rem;
+  }
+
+  .timer__clock {
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  .clock__input {
+    width: 180px;
+    height: 180px;
+    font-size: 8rem;
+  }
+
+  .timer__buttons {
+    width: 100%;
+  }
+
+  .button__icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .button__icon:hover {
+    fill: #fff;
+  }
+
+  .timer__audio {
+    bottom: -270px;
+  }
+}
