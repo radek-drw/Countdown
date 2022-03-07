@@ -1,15 +1,15 @@
 class Timer {
    constructor() {
-      this.alarm = document.querySelector('#alarm');
-      this.audio = document.querySelector('#audio');
-      this.editTime = document.querySelector('#edit-time');
-      this.hoursInput = document.querySelector('#hours');
-      this.minutesInput = document.querySelector('#minutes');
-      this.secondsInput = document.querySelector('#seconds');
+      this.alarm = document.querySelector('.alarm');
+      this.audio = document.querySelector('.audio');
+      this.editTime = document.querySelector('.edit-time');
+      this.hoursInput = document.querySelector('.hours');
+      this.minutesInput = document.querySelector('.minutes');
+      this.secondsInput = document.querySelector('.seconds');
       this.timerInputs = [...document.querySelectorAll('.clock__input')];
 
-      this.runTime = document.querySelector('#run-time');
-      this.rerunTime = document.querySelector('#rerun-time');
+      this.runTime = document.querySelector('.run-time');
+      this.rerunTime = document.querySelector('.rerun-time');
 
       this.hours = 0;
       this.minutes = 0;
