@@ -1,6 +1,6 @@
 # Countdown
 
-### What aplication does:
+### Features:
 
 1. Maximum time is 99h 59min 59sec
 2. User can confirm set time by pressing key 'Enter'
