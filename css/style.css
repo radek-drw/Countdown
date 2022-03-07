@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,9 +25,9 @@ body {
 }
 
 .timer__clock {
+  display: flex;
   width: 500px;
   margin: 70px auto 20px auto;
-  display: flex;
   justify-content: center;
 }
 
@@ -68,16 +66,15 @@ body {
 }
 
 .clock__label {
-  text-align: center;
   font-size: 1.6rem;
+  text-align: center;
 }
 
 .timer__buttons {
+  display: flex;
   width: 500px;
   margin: 0 auto;
-  display: flex;
   justify-content: space-around;
-  position: relative;
 }
 
 .button {
