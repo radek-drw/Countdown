@@ -1,12 +1,19 @@
-# Countdown
+# Timer Application
 
-### Features:
+## Overview
 
-1. Maximum time is 99h 59min 59sec
-2. User can confirm set time by pressing key 'Enter'
-3. Minutes and seconds can be set more than 59 so if for example user needs to countdown from 300sec after press play button it will automaticly convert seconds to minutes and also it will convert minutes to hours if is more than 59 mins. [example: 300sec it will be 5min and 0sec].
-4. When time is finished the alarm sound will go off, and alarm icon will be visible, then user can click the alarm icon to reset all settings, hide alarm icon and switch alarm sound off
-5. Time in input fields can be set by using keyboard arrows &uArr; &dArr;
-6. Rerun button available for user to reset time as it was set at the beginnig
-7. If given time is one digit only, the timer will add '0' at the beginning of input to make it look more professional
-8. It is responsive application for mobile devices and tablets
+A web-based timer application with features to set, start, pause, and reset a countdown. Includes an alarm that sounds when the timer reaches zero.
+
+## Features
+
+- Set timer duration (hours, minutes, seconds)
+- Start/Pause countdown
+- Alarm notification on timer completion
+- Reset timer to initial value
+
+## Usage
+  1. Enter the desired time.
+  2. Click "Edit Time" to switch to editing mode.
+  3. Click "Start/Pause" to start or pause the countdown.
+  4. Click "Reset" to reset the timer.
+  5. Click the alarm to stop the sound once the timer ends.
